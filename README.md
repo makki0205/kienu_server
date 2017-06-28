@@ -4,7 +4,7 @@
 - method
 	- POST
 - URL
-	- makki0250.com:3000/api
+	- http://makki0250.com:3000/api/upload
 - parameter
 	- file : ファイル
 
@@ -23,7 +23,7 @@
 - method
 	- GET
 - URL
-	- makki0250.com:3000/{download_url}
+	- http://makki0250.com:3000/{download_url}
 
 ### 例
 `curl http://makki0250.com:3000/file/oI07/ba-ka.txt`
