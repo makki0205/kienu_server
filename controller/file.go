@@ -5,21 +5,32 @@ import (
 	"os"
 	"log"
 	"io"
-	"time"
-	"math/rand"
+	"github.com/HALDevelopersTeam/crow_server/model"
+	"github.com/cloudfoundry/bytefmt"
+	"bytes"
 )
 
-type File struct {}
+type File struct {
+	fileRep *model.FileRepository
+}
 
 func NewFileCtr()(File){
-	return File{}
+	return File{
+		fileRep: model.GetFileRepository(),
+	}
 }
 func(self *File) UploadFile(c *gin.Context){
 	// TODO DBで永続化
 	file, header , err := c.Request.FormFile("file")
 	filename := header.Filename
-	uuid := self.RandString(4)
-
+	// fileサイズ取得
+	var buff bytes.Buffer
+	fileSize, err := buff.ReadFrom(file)
+	file.Seek(0,0) //pointerを戻す
+	// DBへの保存
+	uuid := self.fileRep.SaveFileData(filename, int(fileSize))
+	// fileの保存
+	// TODO AWS
 	dirPath := "./storage/file/"+ uuid
 	if _, err := os.Stat(dirPath); err != nil {
 		os.MkdirAll(dirPath, 0777)
@@ -42,32 +53,21 @@ func(self *File) UploadFile(c *gin.Context){
 }
 func(self *File)GetFileDescription(c *gin.Context){
 	uuid := c.Param("uuid")
-	c.JSON(200, uuid)
-}
-
-var randSrc = rand.NewSource(time.Now().UnixNano())
-
-const (
-	rs6Letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-	IdxBits = 6
-	IdxMask = 1<<IdxBits - 1
-	IdxMax = 63 / IdxBits
-)
-
-func(self *File) RandString(n int) string {
-	b := make([]byte, n)
-	cache, remain := randSrc.Int63(), IdxMax
-	for i := n-1; i >= 0; {
-		if remain == 0 {
-			cache, remain = randSrc.Int63(), IdxMax
-		}
-		idx := int(cache & IdxMask)
-		if idx < len(rs6Letters) {
-			b[i] = rs6Letters[idx]
-			i--
-		}
-		cache >>= IdxBits
-		remain--
+	file := self.fileRep.GetFileFromUuid(uuid)
+	if file.ID == 0 {
+		c.JSON(404, gin.H{"err":"file not Fund"})
+		return
 	}
-	return string(b)
+	c.JSON(200, self.createGetFileDescriptionResponse(file))
 }
+func (self *File)createGetFileDescriptionResponse(file model.File) gin.H{
+	return gin.H{
+		"download_url":"/file/"+file.Uuid+"/"+file.FileName,
+		"file_size": bytefmt.ByteSize(uint64(file.FileSize)),
+		"create_at": file.CreatedAt,
+		"exp_at": file.Exp,
+	}
+}
+
+
+

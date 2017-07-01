@@ -7,7 +7,7 @@ import (
 
 var CorsConfig = cors.Config{
 	Origins : "*",
-	Methods : "GET, PUT, POST, DELETE",
+	Methods : "GET, PUT, POST, DELETE, OPTIONS",
 	RequestHeaders : "Origin, Authorization, Content-Type",
 	ExposedHeaders : "",
 	MaxAge : 50 * time.Second,
