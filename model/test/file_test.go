@@ -2,7 +2,7 @@ package test
 
 import (
 	"testing"
-	"github.com/HALDevelopersTeam/crow_server/model"
+	"github.com/makki0205/kienu_server/model"
 )
 
 

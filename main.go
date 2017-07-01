@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/itsjamie/gin-cors"
-	"github.com/HALDevelopersTeam/crow_server/middleware"
-	"github.com/HALDevelopersTeam/crow_server/controller"
+	"github.com/makki0205/kienu_server/middleware"
+	"github.com/makki0205/kienu_server/controller"
 )
 
 func main() {

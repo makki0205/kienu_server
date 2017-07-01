@@ -5,7 +5,7 @@ import (
 	"os"
 	"log"
 	"io"
-	"github.com/HALDevelopersTeam/crow_server/model"
+	"github.com/makki0205/kienu_server/model"
 	"github.com/cloudfoundry/bytefmt"
 	"bytes"
 )
