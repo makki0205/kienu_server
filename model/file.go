@@ -42,7 +42,7 @@ func (self *FileRepository)SaveFileData(fileName string, fileSize int)string{
 		Exp:time.Now().AddDate(0,0,7),
 	}
 	err := db.Create(&file).GetErrors()
-	if err != nil {
+	if err[0] != nil {
 		panic(err)
 	}
 	return file.Uuid
@@ -50,7 +50,7 @@ func (self *FileRepository)SaveFileData(fileName string, fileSize int)string{
 func (self *FileRepository)GetFileFromUuid(uuid string)(File){
 	var file File
 	err := db.Where("uuid = ?", uuid).First(&file).GetErrors()
-	if err !=nil {
+	if err[0] !=nil {
 		panic(err)
 	}
 	return file
