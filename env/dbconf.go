@@ -7,7 +7,7 @@ import (
 var DatabaseDriver, DatabaseSource = getDBConfig()
 
 func getDBConfig()(string, string){
-	var buf, err = ioutil.ReadFile("dbconfig.yml.template")
+	var buf, err = ioutil.ReadFile("dbconfig.yml")
 	if err != nil {
 		panic(err)
 	}
