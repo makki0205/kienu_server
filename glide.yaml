@@ -1,6 +1,8 @@
-package: github.com/makki0205/kienu_server
+package: github.com/makki0205/tmp.fun
 import:
+- package: github.com/cloudfoundry/bytefmt
 - package: github.com/gin-gonic/gin
+- package: github.com/go-sql-driver/mysql
 - package: github.com/itsjamie/gin-cors
 - package: github.com/jinzhu/gorm
-- package: github.com/cloudfoundry/bytefmt
+- package: gopkg.in/yaml.v2

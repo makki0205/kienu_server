@@ -5,7 +5,7 @@ import (
 	"os"
 	"log"
 	"io"
-	"github.com/makki0205/kienu_server/model"
+	"github.com/makki0205/tmp.fun/model"
 	"github.com/cloudfoundry/bytefmt"
 	"bytes"
 	"strconv"

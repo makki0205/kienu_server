@@ -3,7 +3,7 @@ package model
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
-	"github.com/makki0205/kienu_server/env"
+	"github.com/makki0205/tmp.fun/env"
 )
 var db = NewDBConn()
 

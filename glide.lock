@@ -1,5 +1,5 @@
-hash: 9d693108b8a43cf87e283642fd8b3b6131457146e4e480f3d9bde7775f760476
-updated: 2017-07-02T04:25:33.567634578+09:00
+hash: 001431f51db0943688ab71f72feec6f0bd7a122bc7faf3a135ccda08d96348aa
+updated: 2017-07-02T17:13:15.570385718+09:00
 imports:
 - name: github.com/cloudfoundry/bytefmt
   version: f4415fafc5619dd75599a54a7c91fb3948ad58bd
@@ -36,4 +36,10 @@ imports:
   version: c193cecd124b5cc722d7ee5538e945bdb3348435
 - name: gopkg.in/yaml.v2
   version: cd8b52f8269e0feb286dfeef29f8fe4d5b397e0b
-testImports: []
+testImports:
+- name: github.com/makki0205/kienu_server
+  version: 25d1dca22530624bb6bfb670235e5a91d186c872
+  subpackages:
+  - controller
+  - env
+  - model
