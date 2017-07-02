@@ -8,6 +8,7 @@ import (
 	"github.com/makki0205/kienu_server/model"
 	"github.com/cloudfoundry/bytefmt"
 	"bytes"
+	"strconv"
 )
 
 type File struct {
@@ -20,7 +21,6 @@ func NewFileCtr()(File){
 	}
 }
 func(self *File) UploadFile(c *gin.Context){
-	// TODO DBで永続化
 	file, header , err := c.Request.FormFile("file")
 	filename := header.Filename
 	// fileサイズ取得
@@ -47,9 +47,17 @@ func(self *File) UploadFile(c *gin.Context){
 	}
 	c.JSON(200, gin.H{
 		"uuid":uuid,
-		"download_url": "/file/"+uuid+"/"+filename,
+		"download_url": "/@" + uuid,
 		"Description_url": "/api/@"+uuid,
 	})
+}
+func (self * File)GetFile(c *gin.Context){
+	uuid := c.Param("uuid")
+	file := self.fileRep.GetFileFromUuid(uuid)
+	c.Header("Content-Type", "application/force-download")
+	c.Header("Content-Length", strconv.Itoa(file.FileSize))
+	c.Header("Content-Disposition", "attachment; filename=" + file.FileName)
+	c.File("./storage/file/"+uuid+"/"+file.FileName)
 }
 func(self *File)GetFileDescription(c *gin.Context){
 	uuid := c.Param("uuid")

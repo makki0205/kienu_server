@@ -1,0 +1,58 @@
+body,html{
+  width: 100%;
+  height: 100%;
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: 0;
+}
+
+._hidden{
+  display: none;
+}
+
+h1{
+  text-align: center;
+}
+.container{
+  width: 50%;
+}
+.img{
+  width: 30%;
+  margin: 0 auto;
+}
+.img img{
+  display: block;
+  width: 100%;
+}
+
+#download-url{
+  padding: 5px;
+  font-size: 15px;
+}
+
+#file{
+  padding: 10px;
+}
+
+.pg-bar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+}
+
+.progress-bar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 5px;
+  background-color: blue;
+}
+
+#submitButton{
+  cursor: pointer;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>kienu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <div class="progress-bar"></div>
+
+  <div class="container">
+
+    <div class="row">
+      <h1>kienu</h1>
+    </div>
+
+    <div class="row">
+      <form action="" method="post" id="form">
+        <div class="form-group">
+          <label for="file">ファイルアップロード</label>
+          <input type="file" name="file" id="file">
+          <p class="help-block">
+            1GBまでの画像、音声、動画を含むすべての形式をアップロード可能です。
+          </p>
+        </div>
+        <div class="form-group">
+          <div class="img">
+            <img src="image/upload_button.jpg" alt="" id="submitButton">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row _hidden downloadedElement">
+      <p class="url-label">ダウンロードURL</p>
+      <input type="text" id="download-url" value="" size="60">
+      <button class="copy btn btn-primary" data-clipboard-target="#download-url">コピー</button>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="js/clipboard.min.js"></script>
+  <script src="https://raw.githubusercontent.com/padolsey-archive/jquery.fn/master/cross-domain-ajax/jquery.xdomainajax.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

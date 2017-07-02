@@ -3,12 +3,12 @@ package model
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	"github.com/makki0205/kienu_server/env"
 )
-// TODO DB設定を外部ファイルに
 var db = NewDBConn()
 
 func NewDBConn()(*gorm.DB){
-	db, err := gorm.Open("mysql", "root@/dev_kienu?charset=utf8&parseTime=True&loc=Local")
+	db, err := gorm.Open(env.DatabaseDriver, env.DatabaseSource)
 	if err != nil{
 		panic(err)
 	}

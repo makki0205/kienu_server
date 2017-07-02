@@ -8,25 +8,22 @@ import (
 )
 
 func main() {
-	gin.SetMode(gin.ReleaseMode)
+	//gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
+	r.Static("/js", "./public/js")
+	r.Static("/image", "./public/image")
+	r.Static("/css", "./public/css")
+	r.LoadHTMLGlob("view/*")
 	r.GET("/", func(c *gin.Context) {
-		c.String(200, "OK")
+		c.HTML(200, "index.html", nil)
 	})
-
-	r.Use()
-	r.GET("/file/:path/:name", func(c *gin.Context){
-		path := c.Param("path")
-		name := c.Param("name")
-		print("./storage/file/" + path + "/" + name)
-		c.File("./storage/file/" + path + "/" + name)
-	})
+	fctr := controller.NewFileCtr()
+	r.GET("/@:uuid", fctr.GetFile)
 	api := r.Group("/api")
 	api.Use(cors.Middleware(middleware.CorsConfig))
 	api.OPTIONS("/:hoge", func(c *gin.Context) {
 
 	})
-	fctr := controller.NewFileCtr()
 	api.POST("/upload", fctr.UploadFile)
 	api.GET("/@:uuid", fctr.GetFileDescription)
 
