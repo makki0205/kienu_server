@@ -1,6 +1,11 @@
-# サーバー仕様
-## ファイルupload
-### Request
+# tmp.fun
+tmp.funとはGoで書かれたファイル共有サービスです。
+## サービスURL
+[http://tmp.fun/](http://tmp.fun/)
+
+## API仕様
+### ファイルupload
+#### Request
 - method
 	- POST
 - URL
@@ -9,7 +14,7 @@
 	- file : ファイル
 
 	
-### Response
+#### Response
 
 ```json
 {
@@ -18,23 +23,23 @@
   "uuid": "oI07"
 }
 ```
-## ファイルdownload
-### Request
+### ファイルdownload
+#### Request
 - method
 	- GET
 - URL
 	- http://tmp.fun/{download_url}
 
-### 例
+#### 例
 `curl http://tmp.fun/file/oI07/ba-ka.txt`
 
 
-## ファイルの詳細情報取得
+#### ファイルの詳細情報取得
 - method
 	- GET
 - URL
 	- http://tmp.fun/api/@{uuid}
-### 例
+#### 例
 ```json
 {
   "create_at": "2017-07-02T04:43:24+09:00",
